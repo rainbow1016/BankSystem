@@ -1,0 +1,22 @@
+banco{
+cuenta 
+* cada usuario tiene un numero de cuenta unico
+* cada usuario tiene un saldo, una fecha de vencimiento y un cvv para realizar transacciones
+* cada cuenta tiene un saldo
+
+usuario
+*  cada usuario tiene una cuenta solamente.
+*  cada usuario puede crear o eliminar su cuenta a voluntad
+*  cada usuario puede consultar su saldo y realizar transacciones {Bank::serives}
+
+transacciones
+* cada usuario que cuenta con una cuenta valida puede:
+* ingresar dinero
+* retirar dinero
+* transferir dinero
+* recibir transferencias de dinero
+
+
+
+}
+
