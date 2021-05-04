@@ -1,29 +1,42 @@
 #[allow(dead_code)]
 pub mod services_bank {
+    use crate::{cuenta, usuario};
     use std::io;
-
-    use crate::cuenta;
-
-    pub fn crear_cuenta() {
-        todo!()
+    #[allow(unused_variables, dead_code)]
+    pub fn crear_cuenta(user: usuario::Usuario) {
+        cuenta::Cuenta::new(user);
     }
-    pub fn eliminar_cuenta() {
-        todo!()
+
+    #[allow(unused_variables, dead_code)]
+    pub fn eliminar_cuenta(lista_de_cuents: &mut Vec<cuenta::Cuenta>) {
+        //ingreso del id de la cuenta para ser comparado
+        println!("Ingrese el id de su cuenta");
+        let mut numero_id = String::new();
+        let entrada = io::stdin().read_line(&mut numero_id).unwrap();
+        let id: u32 = numero_id.trim().parse().unwrap();
+        let mut count = 0;
+
+        // TODO POR AQUI QUEDE
     }
+    #[allow(unused_variables, dead_code)]
     pub fn consignar() {
         todo!()
     }
+    #[allow(unused_variables, dead_code)]
     pub fn retirar() {
         todo!()
     }
+    #[allow(unused_variables, dead_code)]
     pub fn transferir() {
         todo!()
     }
+    #[allow(unused_variables, dead_code)]
     pub fn consultar_saldo() {
         todo!()
     }
-    pub fn new_program() {
-        let _cuentas_usuario: Vec<cuenta::Cuenta> = Vec::new();
+    #[allow(unused_variables, dead_code)]
+    pub fn app() {
+        let mut _cuentas_usuario: Vec<cuenta::Cuenta> = Vec::new();
 
         loop {
             println!("Escoga una opcion");

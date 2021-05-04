@@ -16,7 +16,5 @@ transacciones
 * transferir dinero
 * recibir transferencias de dinero
 
-
-
 }
 

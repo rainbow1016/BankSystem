@@ -8,5 +8,5 @@ mod cuenta;
 mod usuario;
 
 fn main() {
-    banco::services_bank::new_program();
+    banco::services_bank::app();
 }

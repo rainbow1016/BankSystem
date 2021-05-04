@@ -1,29 +1,49 @@
 use crate::usuario;
+use rand::Rng;
+use std::io;
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct Cuenta {
+    pub id_cuenta: u32,
     num_cuenta: u64,
-    fec_ven: String,
-    cvv: u8,
-    saldo: i64,
-    usuario: Option<usuario::Usuario>,
+    pub fec_ven: String,
+    cvv: u32,
+    pub saldo: i64,
+    pub usuario: Option<usuario::Usuario>,
 }
 
 #[allow(dead_code, unused_variables)]
 impl Cuenta {
-    pub fn new(
-        num_cuenta: u64,
-        fec_ven: String,
-        cvv: u8,
-        saldo: i64,
-        usuario: Option<usuario::Usuario>,
-    ) -> Self {
+    pub fn new(user: usuario::Usuario) -> Cuenta {
+        // Generacion de un numero de cuenta
+        let mut rango = rand::thread_rng();
+        let num_cuenta = rango.gen_range(1000..10000);
+
+        // Ingreso de fecha de vencimiento
+        println!("Ingrese la fecha de vencimiento de la cuenta");
+        let mut fec_ven = String::new();
+        let entrada = io::stdin().read_line(&mut fec_ven).unwrap();
+
+        // Generacion automatica de cvv
+        let cvv = rango.gen_range(100..999);
+
+        println!("Cantidad de saldo inicial: ");
+        let mut in_saldo = String::new();
+        let entrada = io::stdin().read_line(&mut in_saldo).unwrap();
+        let saldo = in_saldo.trim().parse().unwrap();
+
+        println!("ingrese el id de la cuenta ");
+        let mut in_id = String::new();
+        let entrada2 = io::stdin().read_line(&mut in_id).unwrap();
+        let id_cuenta = in_id.trim().parse().unwrap();
+
         Cuenta {
+            id_cuenta,
             num_cuenta,
-            fec_ven,
+            fec_ven: fec_ven.lines().next().unwrap().to_string(),
             cvv,
             saldo,
-            usuario,
+            usuario: Some(user),
         }
     }
 }
