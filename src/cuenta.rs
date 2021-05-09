@@ -2,7 +2,7 @@ use crate::usuario;
 use rand::Rng;
 use std::io;
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Cuenta {
     pub id_cuenta: u32,
     num_cuenta: u64,
@@ -45,5 +45,38 @@ impl Cuenta {
             saldo,
             usuario: Some(user),
         }
+    }
+    pub fn gestionar_saldo(cuenta: &mut Cuenta, saldo: i64) {
+        if saldo >= 0 {
+            cuenta.saldo -= saldo
+        } else {
+            cuenta.saldo += saldo
+        }
+    }
+    pub fn retirar_saldo(cuenta: &mut Cuenta, cantidad: i64) {
+        cuenta.saldo -= cantidad;
+        println!(
+            "Usted a retirado:{}\nLe resta de saldo:{:?}",
+            cantidad, cuenta.saldo
+        );
+    }
+    pub fn consignar_saldo(cuenta: &mut Cuenta, cantidad: i64) {
+        cuenta.saldo += cantidad;
+        println!(
+            "Usted a consignado:{}\nLe resta de saldo:{:?}",
+            cantidad, cuenta.saldo
+        );
+    }
+    pub fn consultar_cuenta(cuenta: &Cuenta) {
+        println!(
+            "El id de la cuenta es:{}
+            \nLa fecha de vencimiento es:{}
+            \nEl saldo disponible es:{}
+            \nLe pertenece al usuario:{:?}",
+            cuenta.id_cuenta,
+            cuenta.fec_ven.lines().next().unwrap(),
+            cuenta.saldo,
+            cuenta.usuario
+        )
     }
 }
